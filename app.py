@@ -74,9 +74,10 @@ class Camera(object):
 				# camera setup
 				#camera.resolution = (1080, 720)
 				camera.resolution = (640, 480)
-				camera.hflip = True
-				camera.vflip = True
-				camera.rotation=270
+				#camera.resolution = (320, 240)
+				#camera.hflip = True
+				#camera.vflip = True
+				#camera.rotation=270
 
 				stream = io.BytesIO()
 				for foo in camera.capture_continuous(stream, 'jpeg', use_video_port=True):
@@ -90,14 +91,11 @@ class Camera(object):
 					#When flag is raised start capturing and uploading files to Canvas 
 					#if flag==1:
 					#for filename in camera.capture_continuous(rootFolder+'files/img{timestamp:%Y%m%d_%H%M%S}.jpg'):
-					for filename in camera.capture_continuous(rootFolder+'files/image.jpg'):
-						print('Captured %s' % filename)
-						time.sleep(0.4)
-						#When Stop Flag is raised, stop capturing 
-						#if stopFlag == 1:
-						#	flag=0
-						#	message1="Complete"
-						#	break
+					#for filename in camera.capture_continuous(rootFolder+'files/image.jpg'):
+					filename=rootFolder+'files/image.jpg'	
+					camera.capture(filename)
+					#print('Captured %s' % filename)
+					#time.sleep(0.1)
 						
 					# if there hasn't been any clients asking for frames in
 					# the last 120 seconds stop the thread
@@ -142,4 +140,4 @@ def video_feed():
 # Flash server on port 80
 # Open up a browser and enter the RPi IP 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', port =9000, debug=True, threaded=True)
+	app.run(host='0.0.0.0', port=80, debug=True, threaded=True)
